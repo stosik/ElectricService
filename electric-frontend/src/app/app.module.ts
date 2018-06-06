@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import 'hammerjs';
+
 import {
   MatButtonModule,
   MatToolbarModule,
@@ -14,13 +15,13 @@ import {
   MatSlideToggleModule,
   MatCheckboxModule,
   MatTableModule
-} from "@angular/material"
+} from "@angular/material";
 
 import { MatIconModule } from '@angular/material/icon';
 import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 
@@ -40,18 +41,20 @@ const MAT_MODULES  = [
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
-    LoginComponent,
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
+    MAT_MODULES,
     BrowserModule,
     FormsModule,
     HttpModule,
+    NoopAnimationsModule,
+    BrowserAnimationsModule,
     routing,
-    MAT_MODULES
   ],
   providers: [
-    LoginService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

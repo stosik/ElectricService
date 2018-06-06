@@ -13,6 +13,7 @@ export class LoginService {
       let headers = new Headers(
       {
         'Content-Type': 'application/x-www-form-urlencoded'
+        // 'Access-Control-Allow-Credentials' : true
       });
       return this.http.post(url, params, {headers: headers, withCredentials : true});
     }
@@ -20,5 +21,5 @@ export class LoginService {
     logout() {
        let url = "http://localhost:8080/logout";
        return this.http.get(url, { withCredentials: true });
-    }
-}
+     }
+} 

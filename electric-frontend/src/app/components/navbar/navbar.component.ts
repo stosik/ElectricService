@@ -4,15 +4,15 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   
   loggedIn: boolean;
   
     constructor(private loginService: LoginService, private router : Router) {
-      if(localStorage.getItem('ServiceUserLoggedIn') == '') {
+      if(localStorage.getItem('PortalUserLoggedIn') == '') {
         this.loggedIn = false;
       } else {
         this.loggedIn = true;
@@ -22,7 +22,7 @@ export class NavBarComponent implements OnInit {
     logout(){
       this.loginService.logout().subscribe(
         res => {
-          localStorage.setItem('ServiceUserLoggedIn', '');
+          localStorage.setItem('PortalUserLoggedIn', '');
         },
         err => console.log(err)
         );
@@ -32,4 +32,4 @@ export class NavBarComponent implements OnInit {
   
     ngOnInit() {
     }
-  }
+}
