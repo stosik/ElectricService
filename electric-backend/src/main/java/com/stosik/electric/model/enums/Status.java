@@ -1,4 +1,4 @@
-package com.stosik.electric.model;
+package com.stosik.electric.model.enums;
 
 public enum Status
 {
