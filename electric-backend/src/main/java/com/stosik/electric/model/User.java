@@ -3,8 +3,9 @@ package com.stosik.electric.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.stosik.electric.model.security.Authority;
 import com.stosik.electric.model.security.UserRole;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Singular;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,12 +19,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class User implements UserDetails, Serializable
 {
     @Id
@@ -33,24 +34,26 @@ public class User implements UserDetails, Serializable
     
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
-    
-    private String email;
-    private String phone;
     private boolean enabled = true;
+    
+    public User(String username, String password)
+    {
+        this.username = username;
+        this.password = password;
+    }
     
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @JsonIgnore
     @Singular
-    private Set<UserRole> userRoles = new HashSet<>();
+    private Set<UserRole> userRoles;
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities()
     {
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
-        return authorities;
+        return userRoles
+            .stream()
+            .map(ur -> new Authority(ur.getRole().getName()))
+            .collect(Collectors.toSet());
     }
     
     @Override
@@ -77,8 +80,8 @@ public class User implements UserDetails, Serializable
         return enabled;
     }
     
-    public String getName()
+    public void setUsername(String username)
     {
-        return null;
+        this.username = username;
     }
 }

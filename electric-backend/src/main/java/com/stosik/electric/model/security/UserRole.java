@@ -16,10 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-@NoArgsConstructor
-@Getter
-@Setter
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 @Table(name = "user_role")
 public class UserRole implements Serializable
 {

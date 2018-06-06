@@ -1,8 +1,9 @@
-package com.stosik.electric.service;
+package com.stosik.electric.service.impl;
 
 import com.stosik.electric.model.User;
 import com.stosik.electric.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,17 +19,18 @@ public class UserSecurityService implements UserDetailsService
 {
     private final UserRepository userRepository;
     
+    @SneakyThrows
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+    public UserDetails loadUserByUsername(String username)
     {
-        Optional<User> user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
         
-        if(!user.isPresent())
+        if(user == null)
         {
             log.warn("Username {} not found", username);
             throw new UsernameNotFoundException("Username " + username + " not found");
         }
         
-        return user.get();
+        return user;
     }
 }

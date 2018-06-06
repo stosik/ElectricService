@@ -1,8 +1,7 @@
 package com.stosik.electric.model.security;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,15 +12,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Role implements Serializable
 {
     @Id
     private Long roleId;
-    
     private String name;
+    
+    public Role(Long roleId, String name)
+    {
+        this.roleId = roleId;
+        this.name = name;
+    }
     
     @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
     private Set<UserRole> userRoles = new HashSet<>();
