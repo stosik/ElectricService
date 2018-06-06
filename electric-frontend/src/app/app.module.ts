@@ -14,7 +14,8 @@ import {
   MatSelectModule,
   MatSlideToggleModule,
   MatCheckboxModule,
-  MatTableModule
+  MatTableModule,
+  MatFormFieldModule
 } from "@angular/material";
 
 import { MatIconModule } from '@angular/material/icon';
@@ -35,7 +36,8 @@ const MAT_MODULES  = [
   MatCheckboxModule,  
   MatSlideToggleModule,
   MatIconModule,
-  MatTableModule
+  MatTableModule,
+  MatFormFieldModule
 ];
 
 @NgModule({

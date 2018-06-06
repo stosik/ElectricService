@@ -1,7 +1,6 @@
 <mat-toolbar class="mat-primary">
   <h3 [style.color] = "'white'">ELECTRIC SERVICE</h3>
   <span class="example-spacer"></span>
-  <span [hidden]="!loggedIn "><a mat-button routerLink="/userAccount">User Account</a></span>
-  <span [hidden]="!loggedIn "><a mat-button routerLink="/appointment">Appointment</a></span>
+  <span [hidden]="!loggedIn "><a mat-button routerLink="/items">Items</a></span>
   <span [hidden]="!loggedIn " (click)="logout()"><a mat-button>Logout</a></span>
 </mat-toolbar>

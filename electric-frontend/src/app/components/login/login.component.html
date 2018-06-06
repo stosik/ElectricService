@@ -14,9 +14,9 @@
                             <mat-icon>lock</mat-icon>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="7">
-                            <mat-input-container class="justifier">
+                            <mat-form-field class="justifier">
                                 <input matInput type="text" matInput [(ngModel)]="username" name="username" id='username' placeholder="Your Username">
-                            </mat-input-container>
+                            </mat-form-field>
                         </mat-grid-tile>
                     </mat-grid-list>
                     <mat-grid-list cols="9" rowHeight="100px">
@@ -24,9 +24,9 @@
                             <mat-icon>remove_red_eye</mat-icon>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="7">
-                            <mat-input-container class="justifier">
+                            <mat-form-field class="justifier">
                                 <input matInput type="password" matInput [(ngModel)]="password" name="password" id='password' placeholder="Your Password">
-                            </mat-input-container>
+                            </mat-form-field>
                         </mat-grid-tile>
                     </mat-grid-list>
                     <button mat-raised-button type="submit" class="login-button">

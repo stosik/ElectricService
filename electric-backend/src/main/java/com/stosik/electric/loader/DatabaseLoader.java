@@ -30,7 +30,7 @@ public class DatabaseLoader
             user1.setPassword(SecurityUtility.passwordEncoder().encode("p"));
             Set<UserRole> userRoles = new HashSet<>();
             Role role1 = new Role();
-            role1.setRoleId(1L);
+            role1.setRoleId(1);
             role1.setName("ROLE_USER");
             userRoles.add(new UserRole(user1, role1));
             

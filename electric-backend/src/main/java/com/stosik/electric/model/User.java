@@ -1,15 +1,16 @@
 package com.stosik.electric.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.stosik.electric.model.security.Authority;
 import com.stosik.electric.model.security.UserRole;
-import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.Singular;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,11 +20,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class User implements UserDetails, Serializable
 {
@@ -42,10 +45,9 @@ public class User implements UserDetails, Serializable
         this.password = password;
     }
     
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Singular
-    private Set<UserRole> userRoles;
+    private Set<UserRole> userRoles = new HashSet<>();
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities()

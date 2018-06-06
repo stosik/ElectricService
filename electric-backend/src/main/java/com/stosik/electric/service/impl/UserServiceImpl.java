@@ -32,9 +32,8 @@ public class UserServiceImpl implements UserService
         else
         {
             userRoles
-                .stream()
-                .map(UserRole::getRole)
-                .forEach(roleRepository::save);
+                .forEach(ur -> roleRepository.save(ur.getRole()));
+
             
             user.getUserRoles().addAll(userRoles);
             

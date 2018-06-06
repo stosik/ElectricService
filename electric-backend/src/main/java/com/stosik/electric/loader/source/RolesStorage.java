@@ -13,6 +13,6 @@ public class RolesStorage implements Set<Role>
     @Delegate
     Set<Role> roles = Collections.singleton
         (
-            new Role(2L, "ROLE_USER")
+            new Role(2, "ROLE_USER")
         );
 }

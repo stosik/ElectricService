@@ -34,13 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
         "/js/**",
         "/images/**",
         "/",
-        "/about/**",
-        "/error/**/*",
-        "/contact/**",
-        "/signup",
         "/console/**",
-        "/forgot-password/**",
-        "/reset-password/**"
     };
     
     @Override
@@ -51,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
             .permitAll()
             .anyRequest()
             .authenticated();
-        
+    
         http.csrf()
             .disable()
             .cors()
@@ -61,6 +55,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
             .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index?logout").deleteCookies("remember-me").permitAll()
             .and()
             .rememberMe();
+        
+        http.headers()
+            .frameOptions()
+            .disable();
     }
     
     @Autowired
