@@ -1,4 +1,4 @@
-package com.stosik.electric.model.security;
+package com.stosik.electric.model.entity.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

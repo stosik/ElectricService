@@ -1,9 +1,8 @@
 package com.stosik.electric.service;
 
-import com.stosik.electric.model.User;
-import com.stosik.electric.model.security.UserRole;
+import com.stosik.electric.model.entity.User;
+import com.stosik.electric.model.entity.security.UserRole;
 
-import java.util.Optional;
 import java.util.Set;
 
 public interface UserService

@@ -1,5 +1,6 @@
-package com.stosik.electric.model;
+package com.stosik.electric.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.NonFinal;
@@ -10,10 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "parameters")
 public class Parameter
 {
     @Id

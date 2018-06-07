@@ -1,7 +1,7 @@
 package com.stosik.electric.service.impl;
 
-import com.stosik.electric.model.User;
-import com.stosik.electric.model.security.UserRole;
+import com.stosik.electric.model.entity.User;
+import com.stosik.electric.model.entity.security.UserRole;
 import com.stosik.electric.repository.RoleRepository;
 import com.stosik.electric.repository.UserRepository;
 import com.stosik.electric.service.UserService;

@@ -1,7 +1,6 @@
-package com.stosik.electric.model.security;
+package com.stosik.electric.model.entity.security;
 
-import com.stosik.electric.model.User;
-import lombok.Data;
+import com.stosik.electric.model.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

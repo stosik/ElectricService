@@ -1,7 +1,7 @@
 package com.stosik.electric.loader.source;
 
 import com.stosik.electric.config.security.utility.SecurityUtility;
-import com.stosik.electric.model.User;
+import com.stosik.electric.model.entity.User;
 import lombok.experimental.Delegate;
 import org.springframework.stereotype.Repository;
 
