@@ -1,7 +1,9 @@
 package com.stosik.electric.model.security;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,18 +15,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class Role implements Serializable
 {
     @Id
-    private int roleId;
+    private int id;
     
     private String name;
     
-    public Role(int roleId, String name)
+    public Role(int id, String name)
     {
-        this.roleId = roleId;
+        this.id = id;
         this.name = name;
     }
     

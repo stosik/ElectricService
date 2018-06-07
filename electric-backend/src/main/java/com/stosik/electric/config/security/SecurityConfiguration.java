@@ -34,6 +34,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
         "/js/**",
         "/images/**",
         "/",
+        "/about/**",
+        "/error/**/*",
+        "/contact/**",
         "/console/**",
     };
     
@@ -50,9 +53,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
             .disable()
             .cors()
             .disable()
-            .formLogin().failureUrl("/index?error").defaultSuccessUrl("/userFront").loginPage("/index").permitAll()
+            .formLogin().failureUrl("/index?error").permitAll()
             .and()
-            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index?logout").deleteCookies("remember-me").permitAll()
+            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).deleteCookies("remember-me").permitAll()
             .and()
             .rememberMe();
         
