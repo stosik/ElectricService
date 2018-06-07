@@ -2,7 +2,6 @@ package com.stosik.electric.model;
 
 import com.stosik.electric.model.security.Authority;
 import com.stosik.electric.model.security.UserRole;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

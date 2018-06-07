@@ -19,6 +19,7 @@ public class Role implements Serializable
 {
     @Id
     private int roleId;
+    
     private String name;
     
     public Role(int roleId, String name)
