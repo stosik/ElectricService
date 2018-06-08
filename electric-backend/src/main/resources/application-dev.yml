@@ -11,10 +11,10 @@ spring:
     platform: h2
     url: jdbc:h2:file:~/test
     username: sa
-    password:
+    password: sa
     driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update
-      show-sql: true
+      ddl-auto: create-drop
+    show-sql: true

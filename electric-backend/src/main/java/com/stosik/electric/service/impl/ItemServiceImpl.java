@@ -1,7 +1,7 @@
 package com.stosik.electric.service.impl;
 
 import com.stosik.electric.model.converter.MessageCommandToMessage;
-import com.stosik.electric.model.dto.MessageCommand;
+import com.stosik.electric.model.dto.CommentCommand;
 import com.stosik.electric.model.entity.Item;
 import com.stosik.electric.model.entity.enums.Status;
 import com.stosik.electric.repository.ItemRepository;
@@ -9,10 +9,12 @@ import com.stosik.electric.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ItemServiceImpl implements ItemService
 {
     private final ItemRepository itemRepository;
@@ -35,19 +37,15 @@ public class ItemServiceImpl implements ItemService
             .findItemsWithinCategory(category);
     }
     
-    public Item reportMalfunction(Long id)
+    public void reportMalfunction(Long id)
     {
         Item item = itemRepository.findOne(id);
         item.setStatus(Status.BROKEN);
-        
-        return item;
     }
     
-    public Item commentItem(Long id, MessageCommand message)
+    public void commentItem(Long id, CommentCommand message)
     {
         Item item = itemRepository.findOne(id);
-        item.getMessages().add(messageConverter.convert(message));
-        
-        return item;
+        item.getComments().add(messageConverter.convert(message));
     }
 }

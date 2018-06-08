@@ -1,19 +1,19 @@
 package com.stosik.electric.model.converter;
 
-import com.stosik.electric.model.dto.MessageCommand;
-import com.stosik.electric.model.entity.Message;
+import com.stosik.electric.model.dto.CommentCommand;
+import com.stosik.electric.model.entity.Comment;
 import com.sun.istack.internal.Nullable;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MessageCommandToMessage implements Converter<MessageCommand, Message>
+public class MessageCommandToMessage implements Converter<CommentCommand, Comment>
 {
     @Synchronized
     @Nullable
     @Override
-    public Message convert(MessageCommand msg)
+    public Comment convert(CommentCommand msg)
     {
         if(msg == null)
         {
@@ -21,7 +21,7 @@ public class MessageCommandToMessage implements Converter<MessageCommand, Messag
         }
         else
         {
-            final Message message = new Message();
+            final Comment message = new Comment();
             message.setMessage(message.getMessage());
             
             return message;

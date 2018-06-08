@@ -11,11 +11,11 @@ export class LoginService {
       let url = "http://localhost:8080/index";
       let params = `username=${username}&password=${password}`;
       let headers = new Headers(
-      {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      });
-
-      return this.http.post(url, params, {headers: headers, withCredentials : true});
+        {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        });
+  
+        return this.http.post(url, params, {headers: headers, withCredentials : true});
     }
   
     logout() {

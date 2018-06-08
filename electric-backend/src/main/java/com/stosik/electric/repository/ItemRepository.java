@@ -11,6 +11,6 @@ public interface ItemRepository extends JpaRepository<Item, Long>
 {
     List<Item> findItemsByStatus(Status status);
     
-    @Query("SELECT i from items i where i.status = ?1")
+    @Query("SELECT i from Item i where i.category.name = ?1")
     List<Item> findItemsWithinCategory(String category);
 }

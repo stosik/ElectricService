@@ -42,5 +42,5 @@ public class Item
     
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private Set<Message> messages;
+    private Set<Comment> comments;
 }

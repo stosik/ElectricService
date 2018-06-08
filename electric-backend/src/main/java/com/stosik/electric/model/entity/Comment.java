@@ -21,8 +21,8 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "messages")
-public class Message
+@Table(name = "comments")
+public class Comment
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

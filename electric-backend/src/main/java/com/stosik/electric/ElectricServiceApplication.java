@@ -12,6 +12,7 @@ public class ElectricServiceApplication
     public static void main(String[] args)
     {
         new SpringApplicationBuilder(ElectricServiceApplication.class)
+            .profiles("dev")
             .bannerMode(Banner.Mode.OFF)
             .headless(true)
             .application()

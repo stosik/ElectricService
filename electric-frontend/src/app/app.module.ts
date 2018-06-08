@@ -6,45 +6,91 @@ import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform
 import 'hammerjs';
 
 import {
+  MatAutocompleteModule,
   MatButtonModule,
-  MatToolbarModule,
-  MatGridListModule,
-  MatInputModule,
-  MatOptionModule,
-  MatSelectModule,
-  MatSlideToggleModule,
+  MatButtonToggleModule,
+  MatCardModule,
   MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
   MatTableModule,
-  MatFormFieldModule
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
 } from "@angular/material";
 
-import { MatIconModule } from '@angular/material/icon';
 import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
+import { ItemsListComponent } from './components/items-list/items-list.component';
+import { ItemService } from './services/item.service';
+import { CommentService } from './services/comment.service';
 
 const MAT_MODULES  = [
+  MatAutocompleteModule,
   MatButtonModule,
-  MatToolbarModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
   MatGridListModule,
-  MatInputModule,
-  MatOptionModule,
-  MatSelectModule,
-  MatCheckboxModule,  
-  MatSlideToggleModule,
   MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
   MatTableModule,
-  MatFormFieldModule
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    ItemsListComponent
   ],
   imports: [
     MAT_MODULES,
@@ -56,7 +102,9 @@ const MAT_MODULES  = [
     routing,
   ],
   providers: [
-    LoginService
+    LoginService,
+    ItemService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })

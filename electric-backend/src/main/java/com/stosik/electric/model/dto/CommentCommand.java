@@ -4,7 +4,7 @@ import lombok.NonNull;
 import lombok.Value;
 
 @Value
-public class MessageCommand
+public class CommentCommand
 {
     @NonNull
     String message;

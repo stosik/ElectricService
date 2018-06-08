@@ -1,6 +1,6 @@
 package com.stosik.electric.controller;
 
-import com.stosik.electric.model.dto.MessageCommand;
+import com.stosik.electric.model.dto.CommentCommand;
 import com.stosik.electric.model.entity.Item;
 import com.stosik.electric.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +8,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,26 +29,26 @@ public class ItemController
     }
     
     @GetMapping("/all/broken")
-    public List<Item> retrieveAllBrokent()
+    public List<Item> retrieveAllBrokenItems()
     {
         return itemService.retrieveAllBrokenItems();
     }
     
     @GetMapping("/{category}")
-    public List<Item> retrieveAllItemsWithingCategory(@RequestParam String category)
+    public List<Item> retrieveAllItemsWithingCategory(@PathVariable String category)
     {
         return itemService.retrieveAllItemsWithingCategory(category);
     }
     
     @PostMapping("/{id}/comment/add")
-    public Item commentItem(@PathVariable Long id, MessageCommand message)
+    public void commentOnItem(@PathVariable Long id, @RequestBody CommentCommand message)
     {
-        return itemService.commentItem(id, message);
+        itemService.commentItem(id, message);
     }
     
-    @PostMapping("/{id}/changeState")
-    public Item changeStateOfItem(@PathVariable Long id)
+    @GetMapping("/{id}/report")
+    public void changeStateOfItem(@PathVariable Long id)
     {
-        return itemService.reportMalfunction(id);
+        itemService.reportMalfunction(id);
     }
 }

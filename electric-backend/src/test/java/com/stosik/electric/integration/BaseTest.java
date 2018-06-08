@@ -1,4 +1,4 @@
-package com.stosik.integration;
+package com.stosik.electric.integration;
 
 import com.stosik.electric.ElectricServiceApplication;
 import org.junit.runner.RunWith;

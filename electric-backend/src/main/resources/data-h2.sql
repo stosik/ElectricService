@@ -5,14 +5,13 @@ insert into categories (name) values
   ('computer'),
   ('dvd');
 
-
 insert into items (status, category_id) values
   ('WORKING', 1),
   ('BROKEN', 3),
   ('WORKING', 2),
   ('BROKEN', 4);
 
-insert into messages (message, item_id) values
+insert into comments (message, item_id) values
   ('It s been broken during relocation.', 2),
   ('Not working screen with multple scratches on back.', 1),
   ('Not working at all.', 3),
