@@ -34,10 +34,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
         "/js/**",
         "/images/**",
         "/",
-        "/about/**",
         "/error/**/*",
-        "/contact/**",
         "/console/**",
+        "/items/**"
     };
     
     @Override

@@ -12,6 +12,9 @@ public interface ItemRepository extends JpaRepository<Item, Long>
 {
     List<Item> findItemsByStatus(Status status);
     
+    @Query("SELECT i from Item i left join fetch i.category left join fetch i.comments left join fetch i.parameters")
+    List<Item> findAll();
+    
     @Query("SELECT i from Item i where i.category.name = :category")
     List<Item> findItemsWithinCategory(String category);
     

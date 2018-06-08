@@ -10,34 +10,26 @@ export class ItemService {
   constructor(private http: Http) { }
 
   retrieveItems() {
-    const url = `${AppConst.localhost}/items/all`;
+    let url = `${AppConst.localhost}/items/all`
 
-    return this
-      .http
-      .get(url, { withCredentials: true })
+    return this.http.get(url, { withCredentials: true })
   }
 
   retrieveSpecificItem(id: number) {
-    const url = `${AppConst.localhost}/${id}`
+    let url = `${AppConst.localhost}/${id}`
 
-    return this
-      .http
-      .get(url, { withCredentials: true })
+    return this.http.get(url, { withCredentials: true })
   }
 
   reportMalfunction(id: number) {
-    const url = `${AppConst.localhost}/${id}/report`
+    let url = `${AppConst.localhost}/${id}/report`
 
-    return this
-      .http
-      .get(url, { withCredentials: true })
+    return this.http.get(url, { withCredentials: true })
   }
 
   addComment(id: number, comment: Comment) {
-    const url = `${AppConst.localhost}/${id}/comment/add`
+    let url = `${AppConst.localhost}/${id}/comment/add`
 
-    return this
-      .http
-      .post(url, comment, { withCredentials: true })
+    return this.http.get(url, { withCredentials: true })
   }
 }
