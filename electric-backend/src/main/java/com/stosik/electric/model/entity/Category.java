@@ -28,7 +28,7 @@ public class Category
     
     private String name;
     
-    @OneToOne(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonBackReference
     private Item item;
 }
