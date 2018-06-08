@@ -49,6 +49,7 @@ import { LoginService } from './services/login.service';
 import { ItemsListComponent } from './components/items-list/items-list.component';
 import { ItemService } from './services/item.service';
 import { CommentService } from './services/comment.service';
+import { ItemDetailsComponent } from './components/item-details/item-details.component';
 
 const MAT_MODULES  = [
   MatAutocompleteModule,
@@ -90,7 +91,8 @@ const MAT_MODULES  = [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    ItemsListComponent
+    ItemsListComponent,
+    ItemDetailsComponent
   ],
   imports: [
     MAT_MODULES,

@@ -1,4 +1,7 @@
+import { Category } from "./category";
+
 export class Item {
-    id: number,
-    
+    id: number
+    status: String
+    category: Category
 }

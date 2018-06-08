@@ -40,15 +40,15 @@ public class ItemController
         return itemService.retrieveAllItemsWithingCategory(category);
     }
     
-    @PostMapping("/{id}/comment/add")
-    public void commentOnItem(@PathVariable Long id, @RequestBody CommentCommand message)
-    {
-        itemService.commentItem(id, message);
-    }
-    
     @GetMapping("/{id}/report")
     public void changeStateOfItem(@PathVariable Long id)
     {
         itemService.reportMalfunction(id);
+    }
+    
+    @PostMapping("/{id}/comment/add")
+    public void commentOnItem(@PathVariable Long id, @RequestBody CommentCommand message)
+    {
+        itemService.commentItem(id, message);
     }
 }
