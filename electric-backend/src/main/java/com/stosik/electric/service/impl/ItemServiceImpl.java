@@ -1,7 +1,9 @@
 package com.stosik.electric.service.impl;
 
+import com.stosik.electric.model.converter.ItemToItemCommand;
 import com.stosik.electric.model.converter.MessageCommandToMessage;
 import com.stosik.electric.model.dto.CommentCommand;
+import com.stosik.electric.model.dto.ItemCommand;
 import com.stosik.electric.model.entity.Item;
 import com.stosik.electric.model.entity.enums.Status;
 import com.stosik.electric.repository.ItemRepository;
@@ -19,6 +21,7 @@ public class ItemServiceImpl implements ItemService
 {
     private final ItemRepository itemRepository;
     private final MessageCommandToMessage messageConverter;
+    private final ItemToItemCommand itemToItemCommand;
     
     public List<Item> fetchAllItemsInMagazine()
     {
@@ -29,6 +32,12 @@ public class ItemServiceImpl implements ItemService
     {
         return itemRepository
             .findItemsByStatus(Status.BROKEN);
+    }
+    
+    public ItemCommand retrieveSpecificItem(Long id)
+    {
+        return itemToItemCommand
+            .convert(itemRepository.findOne(id));
     }
     
     public List<Item> retrieveAllItemsWithingCategory(String category)

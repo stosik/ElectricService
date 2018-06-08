@@ -2,7 +2,7 @@ package com.stosik.electric.model.converter;
 
 import com.stosik.electric.model.dto.CommentCommand;
 import com.stosik.electric.model.entity.Comment;
-import com.sun.istack.internal.Nullable;
+import javax.annotation.Nullable;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

@@ -2,10 +2,12 @@ package com.stosik.electric.model.converter;
 
 import com.stosik.electric.model.dto.ParameterCommand;
 import com.stosik.electric.model.entity.Parameter;
-import com.sun.istack.internal.Nullable;
+
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Nullable;
 
 @Component
 public class ParameterCommandToParameter implements Converter<ParameterCommand, Parameter>

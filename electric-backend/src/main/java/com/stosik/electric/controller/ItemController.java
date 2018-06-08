@@ -1,6 +1,7 @@
 package com.stosik.electric.controller;
 
 import com.stosik.electric.model.dto.CommentCommand;
+import com.stosik.electric.model.dto.ItemCommand;
 import com.stosik.electric.model.entity.Item;
 import com.stosik.electric.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,12 @@ public class ItemController
     public void changeStateOfItem(@PathVariable Long id)
     {
         itemService.reportMalfunction(id);
+    }
+    
+    @GetMapping("/{id}/details")
+    public ItemCommand retrieveItemDetails(@PathVariable Long id)
+    {
+        return itemService.retrieveSpecificItem(id);
     }
     
     @PostMapping("/{id}/comment/add")
