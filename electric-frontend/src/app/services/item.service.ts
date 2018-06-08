@@ -10,26 +10,42 @@ export class ItemService {
   constructor(private http: Http) { }
 
   retrieveItems() {
-    let url = `${AppConst.localhost}/items/all`
+    const url = `${AppConst.localhost}/items/all`
+  	const tokenHeader = new Headers({
+  		'Content-Type' : 'application/json',
+  		'x-auth-token' : localStorage.getItem("xAuthToken")
+    });
 
-    return this.http.get(url, { withCredentials: true })
+    return this.http.get(url, { headers: tokenHeader })
   }
 
   retrieveSpecificItem(id: number) {
-    let url = `${AppConst.localhost}/${id}`
+    const url = `${AppConst.localhost}/${id}`
+  	const tokenHeader = new Headers({
+  		'Content-Type' : 'application/json',
+  		'x-auth-token' : localStorage.getItem("xAuthToken")
+    });
 
-    return this.http.get(url, { withCredentials: true })
+    return this.http.get(url, { headers: tokenHeader })
   }
 
   reportMalfunction(id: number) {
-    let url = `${AppConst.localhost}/${id}/report`
+    const url = `${AppConst.localhost}/${id}/report`
+  	const tokenHeader = new Headers({
+  		'Content-Type' : 'application/json',
+  		'x-auth-token' : localStorage.getItem("xAuthToken")
+    });
 
-    return this.http.get(url, { withCredentials: true })
+    return this.http.get(url, { headers: tokenHeader })
   }
 
   addComment(id: number, comment: Comment) {
-    let url = `${AppConst.localhost}/${id}/comment/add`
-
-    return this.http.get(url, { withCredentials: true })
+    const url = `${AppConst.localhost}/${id}/comment/add`
+  	const tokenHeader = new Headers({
+  		'Content-Type' : 'application/json',
+  		'x-auth-token' : localStorage.getItem("xAuthToken")
+    });
+    
+    return this.http.get(url, { headers: tokenHeader })
   }
 }

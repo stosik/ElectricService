@@ -8,28 +8,33 @@ import { LoginService } from './../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  loggedIn: boolean;
-  username: string;
-  password: string;
+  private credential = {'username':'', 'password' : ''};
+  private loggedIn = false;
 
-	constructor (private loginService: LoginService) {
-    if(localStorage.getItem('PortalUserLoggedIn') == '' || localStorage.getItem('PortalUserLoggedIn') == null) {
-      this.loggedIn = false;
-    } else {
-      this.loggedIn = true;
-    }
-  }
-  
+  constructor(private loginService: LoginService) { }
+
   onSubmit() {
-  	this.loginService.sendCredential(this.username, this.password).subscribe(
-      res => {
-        this.loggedIn = true;
-        localStorage.setItem('PortalUserLoggedIn', 'true');
-        location.reload();
-      },
-      err => console.log(err)
-    );
+  	this.loginService.sendCredential(this.credential.username, this.credential.password).subscribe(
+  		res => {
+  			console.log(res);
+  			localStorage.setItem("xAuthToken", res.json().token);
+  			this.loggedIn = true;
+  			location.reload();
+  		},
+  		error => {
+  			console.log(error);
+  		}
+  	);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  	this.loginService.checkSession().subscribe(
+  		res => {
+  			this.loggedIn=true;
+  		},
+  		error => {
+  			this.loggedIn=false;
+  		}
+  	);
+  }
 }

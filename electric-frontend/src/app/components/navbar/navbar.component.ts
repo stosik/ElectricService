@@ -9,27 +9,35 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   
-  loggedIn: boolean;
-  
-    constructor(private loginService: LoginService, private router : Router) {
-      if(localStorage.getItem('PortalUserLoggedIn') == '') {
-        this.loggedIn = false;
-      } else {
-        this.loggedIn = true;
+  private loggedIn = false;
+
+  constructor(private loginService: LoginService, private router: Router) { }
+
+  toggleDisplay() {
+  	this.loggedIn = !this.loggedIn;
+  }
+
+  logout() {
+    this.loginService.logout().subscribe(
+      res => {
+        location.reload();
+      },
+      error => {
+        console.log(error);
       }
-    }
-  
-    logout(){
-      this.loginService.logout().subscribe(
-        res => {
-          localStorage.setItem('PortalUserLoggedIn', '');
-        },
-        err => console.log(err)
-        );
-      location.reload();
-      this.router.navigate(['/login']);
-    }
-  
-    ngOnInit() {
-    }
+    );
+
+    this.router.navigate(['/']);
+  }
+
+  ngOnInit() {
+    this.loginService.checkSession().subscribe(
+      res => {
+        this.loggedIn=true;
+      },
+      error => {
+        this.loggedIn=false;
+      }
+    );
+  }
 }

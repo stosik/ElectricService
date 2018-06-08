@@ -34,7 +34,10 @@ dependencies {
     compile "org.projectlombok:lombok:$lombok"
     runtime('com.h2database:h2')
     compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.session:spring-session-data-redis')
     compile('com.google.code.findbugs:jsr305:3.0.0')
+    compile('biz.paluch.redis:lettuce:4.4.2.Final')
+
     //runtime('org.postgresql:postgresql')
     testCompile("com.jayway.restassured:spring-mock-mvc:2.9.0")
     testCompile("org.spockframework:spock-core:$spockVersion")

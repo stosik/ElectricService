@@ -15,7 +15,7 @@
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="7">
                             <mat-form-field class="justifier">
-                                <input matInput type="text" matInput [(ngModel)]="username" name="username" id='username' placeholder="Your Username">
+                                <input matInput type="text" matInput [(ngModel)]="credential.username" name="username" id='username' placeholder="Your Username">
                             </mat-form-field>
                         </mat-grid-tile>
                     </mat-grid-list>
@@ -25,7 +25,7 @@
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="7">
                             <mat-form-field class="justifier">
-                                <input matInput type="password" matInput [(ngModel)]="password" name="password" id='password' placeholder="Your Password">
+                                <input matInput type="password" matInput [(ngModel)]="credential.password" name="password" id='password' placeholder="Your Password">
                             </mat-form-field>
                         </mat-grid-tile>
                     </mat-grid-list>

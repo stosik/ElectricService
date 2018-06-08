@@ -6,22 +6,35 @@ import { AppConst } from '../web-api/app-consts';
 @Injectable()
 export class LoginService {
 
-  constructor (private http: Http) {}
-  
-    sendCredential(username: string, password: string) {
-      const url = `${AppConst.localhost}/index`;
-      const params = `username=${username}&password=${password}`;
-      const headers = new Headers(
-        {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        });
-  
-      return this.http.post(url, params, {headers: headers, withCredentials : true});
-    }
-  
-    logout() {
-      const url = `${AppConst.localhost}/logout`;
+  constructor(private http:Http) { }
 
-      return this.http.get(url, { withCredentials: true });
-     }
+  sendCredential(username: string, password: string) {
+  	const url = `${AppConst.localhost}/token`;
+  	const encodedCredentials = btoa(username+":"+password);
+  	const basicHeader = "Basic "+encodedCredentials;
+  	const headers = new Headers({
+  		'Content-Type' : 'application/x-www-form-urlencoded',
+  		'Authorization' : basicHeader
+  	});
+
+  	return this.http.get(url, {headers: headers});
+  }
+
+  checkSession() {
+  	const url = `${AppConst.localhost}/checkSession`;
+  	const headers = new Headers({
+  		'x-auth-token' : localStorage.getItem('xAuthToken')
+  	});
+
+  	return this.http.get(url, {headers: headers});
+  }
+
+  logout() {
+  	const url = `${AppConst.localhost}/user/logout`;
+  	const headers = new Headers({
+  		'x-auth-token' : localStorage.getItem('xAuthToken')
+  	});
+
+  	return this.http.post(url, '', {headers: headers});
+  }
 } 
