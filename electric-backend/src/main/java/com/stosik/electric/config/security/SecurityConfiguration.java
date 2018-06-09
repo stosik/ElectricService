@@ -32,6 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
         "/js/**",
         "/image/**",
         "/items/**",
+        "/console/**",
     };
     
     @Override
@@ -47,6 +48,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
             .permitAll()
             .anyRequest()
             .authenticated();
+    
+        http.headers()
+            .frameOptions()
+            .disable();
     }
     
     @Autowired

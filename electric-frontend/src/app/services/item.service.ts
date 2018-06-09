@@ -20,7 +20,7 @@ export class ItemService {
   }
 
   retrieveSpecificItem(id: number) {
-    const url = `${AppConst.localhost}/${id}`
+    const url = `${AppConst.localhost}/items/${id}/details`
   	const tokenHeader = new Headers({
   		'Content-Type' : 'application/json',
   		'x-auth-token' : localStorage.getItem("xAuthToken")
@@ -30,7 +30,7 @@ export class ItemService {
   }
 
   reportMalfunction(id: number) {
-    const url = `${AppConst.localhost}/${id}/report`
+    const url = `${AppConst.localhost}/items/${id}/report`
   	const tokenHeader = new Headers({
   		'Content-Type' : 'application/json',
   		'x-auth-token' : localStorage.getItem("xAuthToken")
@@ -40,7 +40,7 @@ export class ItemService {
   }
 
   addComment(id: number, comment: Comment) {
-    const url = `${AppConst.localhost}/${id}/comment/add`
+    const url = `${AppConst.localhost}/items/${id}/comment/add`
   	const tokenHeader = new Headers({
   		'Content-Type' : 'application/json',
   		'x-auth-token' : localStorage.getItem("xAuthToken")

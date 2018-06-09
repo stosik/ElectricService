@@ -1,3 +1,32 @@
-<p>
-  item-details works!
-</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{item.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="/assets/images/{{item.id}}.jpeg" alt="Photo of a item">
+  <mat-card-content>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="example-card">
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item class="mat-3-line" *ngFor="let comment of item.comments">
+          <div class="mat-list-item-text">
+            <h3>{{comment.createdDate}</h3>
+              <p>{{comment.message}}</p>                
+          </div>
+          <mat-divider mat-inset></mat-divider>
+          <mat-icon class="remove-status" 
+            (click)="deleteComment(comment)">
+            X
+          </mat-icon>
+        </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

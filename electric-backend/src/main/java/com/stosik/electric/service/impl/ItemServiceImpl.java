@@ -9,6 +9,7 @@ import com.stosik.electric.model.entity.enums.Status;
 import com.stosik.electric.repository.ItemRepository;
 import com.stosik.electric.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,6 +18,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class ItemServiceImpl implements ItemService
 {
     private final ItemRepository itemRepository;

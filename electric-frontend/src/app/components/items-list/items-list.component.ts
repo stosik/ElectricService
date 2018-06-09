@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../services/item.service';
 import { Item } from '../../models/item';
-import {Params, ActivatedRoute, Router} from '@angular/router';
-import {Http} from '@angular/http';
+import { ActivatedRoute, Router} from '@angular/router';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-items-list',
@@ -23,11 +23,17 @@ export class ItemsListComponent implements OnInit {
 
    }
 
-   onSelect(item: Item) {
+  onSelect(item: Item) {
 		this.selectedItem = item;
-		this.router.navigate(['/itemDetail', this.selectedItem.id]);
+		this.router.navigate(['/itemDetails', this.selectedItem.id]);
 	}
   
+  reportMalfunction(item: Item) {
+    this.selectedItem = item;
+    this.itemService.reportMalfunction(item.id).subscribe();
+    location.reload();
+  }
+
 	ngOnInit() {
     this.itemService.retrieveItems().subscribe(
       res => {

@@ -17,6 +17,8 @@ public class ItemCommand
     @NonNull
     Long id;
     
+    String name;
+    
     Status status;
     
     Set<Parameter> parameters;

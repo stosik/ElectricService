@@ -25,6 +25,7 @@ public class ItemToItemCommand implements Converter<Item, ItemCommand>
             return ItemCommand
                 .builder()
                 .id(item.getId())
+                .name(item.getName())
                 .category(item.getCategory())
                 .status(item.getStatus())
                 .parameters(item.getParameters())
