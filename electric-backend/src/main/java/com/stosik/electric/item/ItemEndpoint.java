@@ -3,6 +3,7 @@ package com.stosik.electric.item;
 import com.stosik.electric.item.domain.ItemFacade;
 import com.stosik.electric.item.domain.dto.CommentCommand;
 import com.stosik.electric.item.domain.dto.ItemCommand;
+import com.stosik.electric.item.domain.entity.Comment;
 import com.stosik.electric.item.domain.entity.Item;
 import com.stosik.electric.item.domain.exception.ItemNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -56,8 +57,8 @@ class ItemEndpoint
     }
     
     @PostMapping("/{id}/comment/add")
-    public void commentOnItem(@PathVariable Long id, @RequestBody CommentCommand message)
+    public Comment commentOnItem(@PathVariable Long id, @RequestBody CommentCommand message)
     {
-        itemFacade.commentItem(id, message);
+        return itemFacade.commentItem(id, message);
     }
 }
