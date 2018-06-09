@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,41 +22,41 @@ import java.util.List;
 @PreAuthorize("hasRole('USER')")
 class ItemEndpoint
 {
-    private final ItemFacade itemFascade;
+    private final ItemFacade itemFacade;
     
     @GetMapping("/all")
     public List<Item> retrieveAllItemsInMagazine()
     {
-        return itemFascade.fetchAllItemsInMagazine();
+        return itemFacade.fetchAllItemsInMagazine();
     }
     
     @GetMapping("/all/broken")
     public List<Item> retrieveAllBrokenItems()
     {
-        return itemFascade.retrieveAllBrokenItems();
+        return itemFacade.retrieveAllBrokenItems();
     }
     
     @GetMapping("/{category}")
     public List<Item> retrieveAllItemsWithingCategory(@PathVariable String category)
     {
-        return itemFascade.retrieveAllItemsWithingCategory(category);
+        return itemFacade.retrieveAllItemsWithingCategory(category);
     }
     
-    @GetMapping("/{id}/report")
+    @PutMapping("/{id}/report")
     public void changeStateOfItem(@PathVariable Long id)
     {
-        itemFascade.reportMalfunction(id);
+        itemFacade.reportMalfunction(id);
     }
     
     @GetMapping("/{id}/details")
     public ItemCommand retrieveItemDetails(@PathVariable Long id)
     {
-        return itemFascade.retrieveSpecificItem(id);
+        return itemFacade.retrieveSpecificItem(id);
     }
     
     @PostMapping("/{id}/comment/add")
     public void commentOnItem(@PathVariable Long id, @RequestBody CommentCommand message)
     {
-        itemFascade.commentItem(id, message);
+        itemFacade.commentItem(id, message);
     }
 }
