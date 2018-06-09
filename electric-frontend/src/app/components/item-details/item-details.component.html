@@ -1,32 +1,49 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{item.name}}</mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src="/assets/images/{{item.id}}.jpeg" alt="Photo of a item">
-  <mat-card-content>
+<mat-grid-list cols="2" rowHeight="1:1.2">
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{item.name}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="/assets/images/{{item.id}}.jpeg" alt="Photo of items">
+      <mat-card-content>
+        <p>Category: {{item.category.name}}</p>
+        <p>Status: {{item.status}}</p>
+        <mat-chip-list class="mat-chip-list-stacked">
+            <mat-chip *ngFor="let parameter of item.parameters" selected="true" [color]="chip.color">
+              {{parameter.value}}
+            </mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+        <button (click)="postComment()" mat-raised-button color="primary">Post</button>
+        <mat-list>
+          <mat-list-item class="mat-3-line" *ngFor="let comment of item.comments">
+              <div class="mat-list-item-text">
+                <p>{{comment.message}}</p>                
+              </div>
+              <mat-divider mat-inset></mat-divider>
+              <mat-icon class="remove-status" 
+                (click)="deleteComment(comment)">
+                X
+              </mat-icon>
+            </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
 
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
 
-<mat-card class="example-card">
-  <mat-card-content>
-    <mat-list>
-      <mat-list-item class="mat-3-line" *ngFor="let comment of item.comments">
-          <div class="mat-list-item-text">
-            <h3>{{comment.createdDate}</h3>
-              <p>{{comment.message}}</p>                
-          </div>
-          <mat-divider mat-inset></mat-divider>
-          <mat-icon class="remove-status" 
-            (click)="deleteComment(comment)">
-            X
-          </mat-icon>
-        </mat-list-item>
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+

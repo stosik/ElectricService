@@ -9,7 +9,7 @@ spring:
 
   datasource:
     platform: h2
-    url: jdbc:h2:file:~/test
+    url: jdbc:h2:file:~/test;mode=PostgreSQL
     username: sa
     password: sa
     driver-class-name: org.h2.Driver

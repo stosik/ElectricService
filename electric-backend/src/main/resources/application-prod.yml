@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/electric
+    username: root
+    password: pass
+    driver-class-name:
+    tomcat:
+      time-between-eviction-runs-millis: 60000
+      test-while-idle: true
+      validation-query: SELECT 1
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      database-platform: org.hibernate.dialect.PostgreSQLDialect

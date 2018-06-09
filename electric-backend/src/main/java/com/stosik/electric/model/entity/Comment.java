@@ -2,6 +2,7 @@ package com.stosik.electric.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,10 +28,11 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "comments")
+@EqualsAndHashCode(exclude = "item")
 public class Comment
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @CreatedDate
