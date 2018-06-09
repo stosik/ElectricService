@@ -1,7 +1,7 @@
-package com.stosik.electric.login.domain;
+package com.stosik.electric.user.domain;
 
-import com.stosik.electric.login.domain.entity.User;
-import com.stosik.electric.login.domain.entity.UserRole;
+import com.stosik.electric.user.domain.entity.User;
+import com.stosik.electric.user.domain.entity.UserRole;
 
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package com.stosik.electric.login;
+package com.stosik.electric.user;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-class LoginEndpoint
+class UserController
 {
     @RequestMapping("/token")
     public Map<String, String> token(HttpSession session, HttpServletRequest request)

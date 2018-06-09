@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/items")
 @RequiredArgsConstructor
 @PreAuthorize("hasRole('USER')")
-class ItemEndpoint
+class ItemController
 {
     private final ItemFacade itemFacade;
     

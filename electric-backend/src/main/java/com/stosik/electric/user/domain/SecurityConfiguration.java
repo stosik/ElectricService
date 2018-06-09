@@ -1,6 +1,6 @@
-package com.stosik.electric.login.domain;
+package com.stosik.electric.user.domain;
 
-import com.stosik.electric.login.domain.utility.SecurityUtility;
+import com.stosik.electric.user.domain.utility.SecurityUtility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

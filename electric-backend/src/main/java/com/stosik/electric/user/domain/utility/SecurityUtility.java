@@ -1,4 +1,4 @@
-package com.stosik.electric.login.domain.utility;
+package com.stosik.electric.user.domain.utility;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
