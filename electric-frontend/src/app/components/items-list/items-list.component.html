@@ -1,0 +1,18 @@
+<mat-grid-list cols="4" rowHeight="1:1.2" gutterSize="10px"  >
+  <mat-grid-tile
+      *ngFor="let item of items">
+      <mat-card  >
+        <mat-card-header>
+          <mat-card-title>{{item.name}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="/assets/images/{{item.id}}.jpeg" alt="Photo of items">
+        <mat-card-content>
+          {{item.status}}
+        </mat-card-content>
+        <mat-card-actions>
+          <button (click)="onSelect(item)" mat-button>DETAILS</button>
+          <button (click)="reportMalfunction(item)" mat-button color="warn">REPORT</button>
+        </mat-card-actions>
+      </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
