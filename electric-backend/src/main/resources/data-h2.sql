@@ -1,3 +1,13 @@
+insert into roles (id, name) values
+  (1, 'ROLE_USER');
+
+
+insert into users (username, password, enabled) values
+  ('wojtek', 'user', true);
+
+insert into user_role (role_id, user_id) values
+  (1, 1);
+
 insert into categories (name) values
   ('tv'),
   ('audio-voice'),
