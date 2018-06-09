@@ -27,17 +27,22 @@ export class ItemsListComponent implements OnInit {
 		this.selectedItem = item;
 		this.router.navigate(['/itemDetails', this.selectedItem.id]);
 	}
-  
+
   reportMalfunction(item: Item) {
     this.selectedItem = item;
-    this.itemService.reportMalfunction(item.id).subscribe();
-    location.reload();
+    this.itemService.reportMalfunction(item.id).subscribe(
+      res => {
+        this.selectedItem = res.json();
+      },
+      error => {
+        console.log(error.text());
+      }
+    );
   }
 
 	ngOnInit() {
     this.itemService.retrieveItems().subscribe(
       res => {
-        console.log(res);
         this.items = res.json();
       },
       error => {

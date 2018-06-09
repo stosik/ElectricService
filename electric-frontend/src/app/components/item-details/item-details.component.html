@@ -25,16 +25,16 @@
     <mat-card class="example-card">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Leave a comment"></textarea>
+          <textarea matInput ([ngModel])="comment.message" placeholder="Leave a comment"></textarea>
         </mat-form-field>
         <button (click)="postComment()" mat-raised-button color="primary">Post</button>
         <mat-list>
           <mat-list-item class="mat-3-line" *ngFor="let comment of item.comments">
               <div class="mat-list-item-text">
-                <p>{{comment.message}}</p>                
+                <p>{{comment.message}}</p>
               </div>
               <mat-divider mat-inset></mat-divider>
-              <mat-icon class="remove-status" 
+              <mat-icon class="remove-status"
                 (click)="deleteComment(comment)">
                 X
               </mat-icon>
@@ -44,6 +44,3 @@
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
-
-
-

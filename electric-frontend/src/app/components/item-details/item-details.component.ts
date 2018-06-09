@@ -12,28 +12,32 @@ import { Http } from '@angular/http';
 export class ItemDetailsComponent implements OnInit {
 
   private item: Item = new Item();
+  private comment: Comment = new Comment();
   private itemId: number;
-  
+
   constructor(
     private itemService: ItemService,
     private router: Router,
     private http: Http,
     private route: ActivatedRoute
     ) { }
-  
-  addParameter() {
-    
-  }
-  
-  addComment() {
 
+  postComment(itemId: number) {
+    this.itemService.postComment(this.itemId, this.comment).subscribe(
+      res => {
+        this.item.comments = res.json();
+      },
+      error => {
+        console.log(error.text());
+      }
+    );
   }
-  
+
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
   		this.itemId = Number.parseInt(params['id']);
     });
-    
+
     this.itemService.retrieveSpecificItem(this.itemId).subscribe(
       res => {
         console.log(res);
@@ -42,7 +46,6 @@ export class ItemDetailsComponent implements OnInit {
       error => {
         console.log(error.text());
       }
-    )  
+    )
   }
-
 }
