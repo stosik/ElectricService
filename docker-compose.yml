@@ -2,26 +2,11 @@ version: '2'
 
 services:
   electric-service:
-    image: electric/backend
+    image: electric-service
     ports:
       - "127.0.0.1:8080:8080"
     depends_on:
-      - database
       - redis
-    network_mode: "host"
-  electric-frontend:
-    image: electric/frontend
-    ports:
-      - "127.0.0.1:4200:80"
-    network_mode: "host"
-  db:
-    image: postgres
-    ports:
-      - "127.0.0.1:5432:5432"
-    environment:
-    - POSTGRES_PASSWORD=stary11
-    - POSTGRES_USER=postgres
-    - POSTGRES_DB=postgres
     network_mode: "host"
   redis:
     image: redis
