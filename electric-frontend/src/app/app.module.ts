@@ -38,7 +38,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-} from "@angular/material";
+} from '@angular/material';
 
 import { routing } from './app.routing';
 
@@ -48,7 +48,6 @@ import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 import { ItemsListComponent } from './components/items-list/items-list.component';
 import { ItemService } from './services/item.service';
-import { CommentService } from './services/comment.service';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
 
 const MAT_MODULES  = [
@@ -106,7 +105,6 @@ const MAT_MODULES  = [
   providers: [
     LoginService,
     ItemService,
-    CommentService
   ],
   bootstrap: [AppComponent]
 })
