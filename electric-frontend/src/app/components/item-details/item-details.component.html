@@ -10,7 +10,7 @@
         <p>Category: {{item.category.name}}</p>
         <p>Status: {{item.status}}</p>
         <mat-chip-list class="mat-chip-list-stacked">
-            <mat-chip *ngFor="let parameter of item.parameters" selected="true" [color]="chip.color">
+            <mat-chip *ngFor="let parameter of item.parameters" [color]="chip.color">
               {{parameter.value}}
             </mat-chip>
         </mat-chip-list>
@@ -25,7 +25,7 @@
     <mat-card class="example-card">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <textarea matInput ([ngModel])="comment.message" placeholder="Leave a comment"></textarea>
+          <textarea matInput placeholder="Leave a comment"></textarea>
         </mat-form-field>
         <button (click)="postComment()" mat-raised-button color="primary">Post</button>
         <mat-list>
@@ -34,8 +34,7 @@
                 <p>{{comment.message}}</p>
               </div>
               <mat-divider mat-inset></mat-divider>
-              <mat-icon class="remove-status"
-                (click)="deleteComment(comment)">
+              <mat-icon class="remove-status">
                 X
               </mat-icon>
             </mat-list-item>

@@ -1,5 +1,5 @@
 export class Parameter {
-    id: number
-    key: String
-    value: String
+    id: number;
+    key: string;
+    value: string;
 }

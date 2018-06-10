@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './../../services/login.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,33 +8,33 @@ import { LoginService } from './../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  private credential = {'username':'', 'password' : ''};
-  private loggedIn = false;
+  public credential = {'username': '', 'password' : ''};
+  public loggedIn = false;
 
   constructor(private loginService: LoginService) { }
 
   onSubmit() {
-  	this.loginService.sendCredential(this.credential.username, this.credential.password).subscribe(
-  		res => {
-  			console.log(res);
-  			localStorage.setItem("xAuthToken", res.json().token);
-  			this.loggedIn = true;
-  			location.reload();
-  		},
-  		error => {
-  			console.log(error);
-  		}
-  	);
+    this.loginService.sendCredential(this.credential.username, this.credential.password).subscribe(
+      res => {
+        console.log(res);
+        localStorage.setItem('xAuthToken', res.json().token);
+        this.loggedIn = true;
+        location.reload();
+        },
+        error => {
+        console.log(error);
+      }
+      );
   }
 
   ngOnInit() {
-  	this.loginService.checkSession().subscribe(
-  		res => {
-  			this.loggedIn=true;
-  		},
-  		error => {
-  			this.loggedIn=false;
-  		}
-  	);
+    this.loginService.checkSession().subscribe(
+      res => {
+        this.loggedIn = true;
+        },
+        error => {
+        this.loggedIn = false;
+      }
+      );
   }
 }

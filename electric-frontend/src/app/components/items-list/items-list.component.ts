@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../services/item.service';
 import { Item } from '../../models/item';
-import { ActivatedRoute, Router} from '@angular/router';
-import { Http } from '@angular/http';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-items-list',
@@ -11,22 +10,20 @@ import { Http } from '@angular/http';
 })
 export class ItemsListComponent implements OnInit {
 
-  private selectedItem: Item;
-	private items: Item[];
+  public selectedItem: Item;
+  public items: Item[];
 
   constructor(
     private itemService: ItemService,
     private router: Router,
-    private http: Http,
-    private route: ActivatedRoute
   ) {
 
    }
 
   onSelect(item: Item) {
-		this.selectedItem = item;
-		this.router.navigate(['/itemDetails', this.selectedItem.id]);
-	}
+    this.selectedItem = item;
+    this.router.navigate(['/itemDetails', this.selectedItem.id]);
+  }
 
   reportMalfunction(item: Item) {
     this.selectedItem = item;
@@ -40,7 +37,7 @@ export class ItemsListComponent implements OnInit {
     );
   }
 
-	ngOnInit() {
+  ngOnInit() {
     this.itemService.retrieveItems().subscribe(
       res => {
         this.items = res.json();
@@ -48,6 +45,6 @@ export class ItemsListComponent implements OnInit {
       error => {
         console.log(error.text());
       }
-    )
-	}
+    );
+  }
 }

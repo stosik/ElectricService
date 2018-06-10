@@ -3,9 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { AppConst } from '../web-api/app-consts';
 import { tokenHeader } from '../web-api/app-consts';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ItemService {
 
   constructor(private http: Http) { }

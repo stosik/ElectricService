@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './../../services/login.service';
+import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  
-  private loggedIn = false;
+
+  public loggedIn = false;
 
   constructor(private loginService: LoginService, private router: Router) { }
 
   toggleDisplay() {
-  	this.loggedIn = !this.loggedIn;
+    this.loggedIn = !this.loggedIn;
   }
 
   logout() {
@@ -33,10 +33,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.loginService.checkSession().subscribe(
       res => {
-        this.loggedIn=true;
+        this.loggedIn = true;
       },
       error => {
-        this.loggedIn=false;
+        this.loggedIn = false;
       }
     );
   }
