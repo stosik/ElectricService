@@ -1,4 +1,4 @@
-package com.stosik.electric.login.domain.entity;
+package com.stosik.electric.user.domain.entity;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

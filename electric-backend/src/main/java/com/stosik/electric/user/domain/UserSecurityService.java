@@ -1,6 +1,6 @@
-package com.stosik.electric.login.domain;
+package com.stosik.electric.user.domain;
 
-import com.stosik.electric.login.domain.entity.User;
+import com.stosik.electric.user.domain.entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

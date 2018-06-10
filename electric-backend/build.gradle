@@ -8,24 +8,42 @@ buildscript {
     }
     repositories {
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.17.2"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'groovy'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+apply plugin: 'application'
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'com.palantir.docker'
 
 group = 'com.stosik'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+bootJar {
+    baseName = 'electric-service'
+}
+
+distZip.enabled = false
+distTar.enabled = false
+jar.enabled = true
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
 }
 
 dependencies {
@@ -35,7 +53,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.session:spring-session-data-redis')
     compile('com.google.code.findbugs:jsr305:3.0.0')
-    compile('biz.paluch.redis:lettuce:4.4.2.Final')
+    compile ('io.lettuce:lettuce-core:5.1.0.M1')
 
     runtime('com.h2database:h2')
     runtime('org.postgresql:postgresql')
@@ -47,4 +65,11 @@ dependencies {
         transitive = false
     }
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+docker {
+    name "electric-service"
+    files jar.archivePath
+    files 'resources/application-dev.yml'
+    buildArgs(['JAR_FILE': "${jar.archiveName}"])
 }

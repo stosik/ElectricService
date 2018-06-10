@@ -3,7 +3,9 @@ package com.stosik.electric.item;
 import com.stosik.electric.item.domain.ItemFacade;
 import com.stosik.electric.item.domain.dto.CommentCommand;
 import com.stosik.electric.item.domain.dto.ItemCommand;
+import com.stosik.electric.item.domain.entity.Comment;
 import com.stosik.electric.item.domain.entity.Item;
+import com.stosik.electric.item.domain.exception.ItemNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,7 @@ import java.util.List;
 @RequestMapping("/items")
 @RequiredArgsConstructor
 @PreAuthorize("hasRole('USER')")
-class ItemEndpoint
+class ItemController
 {
     private final ItemFacade itemFacade;
     
@@ -36,6 +38,12 @@ class ItemEndpoint
         return itemFacade.retrieveAllBrokenItems();
     }
     
+    @GetMapping("/{id}/details")
+    public ItemCommand retrieveItemDetails(@PathVariable Long id)
+    {
+        return itemFacade.retrieveSpecificItem(id);
+    }
+    
     @GetMapping("/{category}")
     public List<Item> retrieveAllItemsWithingCategory(@PathVariable String category)
     {
@@ -43,20 +51,14 @@ class ItemEndpoint
     }
     
     @PutMapping("/{id}/report")
-    public void changeStateOfItem(@PathVariable Long id)
+    public ItemCommand reportMalfunction(@PathVariable Long id)
     {
-        itemFacade.reportMalfunction(id);
-    }
-    
-    @GetMapping("/{id}/details")
-    public ItemCommand retrieveItemDetails(@PathVariable Long id)
-    {
-        return itemFacade.retrieveSpecificItem(id);
+        return itemFacade.reportMalfunction(id);
     }
     
     @PostMapping("/{id}/comment/add")
-    public void commentOnItem(@PathVariable Long id, @RequestBody CommentCommand message)
+    public Comment commentOnItem(@PathVariable Long id, @RequestBody CommentCommand message)
     {
-        itemFacade.commentItem(id, message);
+        return itemFacade.commentItem(id, message);
     }
 }

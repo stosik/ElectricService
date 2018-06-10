@@ -1,8 +1,9 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 
-ADD /target/electric-service-1.0-SNAPSHOT.jar electric-service.jar
-RUN sh -c 'touch /sabb-backend.jar'
+ARG JAR_FILE
+ADD ${JAR_FILE} electric-service.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.config.location=tmp/application.yml","-jar","/electric-service.jar"]
+
+ENTRYPOINT exec java -Djava.security.egd=file:/dev/./urandom -jar /electric-service.jar

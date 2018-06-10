@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 class ItemConfiguration
 {
     @Bean
-    ItemFacade itemFacade(ItemRepository itemRepository)
+    ItemFacade itemFacade(ItemRepository itemRepository, CommentRepository commentRepository)
     {
         ItemCommandCreator itemCommandCreator = new ItemCommandCreator();
-        MessageCreator messageCreator = new MessageCreator();
+        CommentCreator messageCreator = new CommentCreator();
         
-        return new ItemFacade(itemRepository, messageCreator, itemCommandCreator);
+        return new ItemFacade(itemRepository, messageCreator, itemCommandCreator, commentRepository);
     }
 }

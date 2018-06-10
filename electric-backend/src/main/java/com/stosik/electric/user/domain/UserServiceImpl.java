@@ -1,7 +1,7 @@
-package com.stosik.electric.login.domain;
+package com.stosik.electric.user.domain;
 
-import com.stosik.electric.login.domain.entity.User;
-import com.stosik.electric.login.domain.entity.UserRole;
+import com.stosik.electric.user.domain.entity.User;
+import com.stosik.electric.user.domain.entity.UserRole;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -31,9 +31,7 @@ class UserServiceImpl implements UserService
             userRoles
                 .forEach(ur -> roleRepository.save(ur.getRole()));
 
-            
             user.getUserRoles().addAll(userRoles);
-            
             localUser = userRepository.save(user);
         }
         

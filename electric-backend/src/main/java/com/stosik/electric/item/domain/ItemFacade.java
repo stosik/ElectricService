@@ -2,8 +2,10 @@ package com.stosik.electric.item.domain;
 
 import com.stosik.electric.item.domain.dto.CommentCommand;
 import com.stosik.electric.item.domain.dto.ItemCommand;
+import com.stosik.electric.item.domain.entity.Comment;
 import com.stosik.electric.item.domain.entity.Item;
 import com.stosik.electric.item.domain.entity.enums.Status;
+import com.stosik.electric.item.domain.exception.ItemNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.transaction.Transactional;
@@ -14,14 +16,16 @@ import java.util.List;
 public class ItemFacade
 {
     private ItemRepository itemRepository;
-    private MessageCreator messageConverter;
+    private CommentCreator commentCreator;
     private ItemCommandCreator itemToItemCommand;
+    private CommentRepository commentRepository;
     
-    public ItemFacade(ItemRepository itemRepository, MessageCreator messageConverter, ItemCommandCreator itemToItemCommand)
+    public ItemFacade(ItemRepository itemRepository, CommentCreator commentCreator, ItemCommandCreator itemToItemCommand, CommentRepository commentRepository)
     {
         this.itemRepository = itemRepository;
-        this.messageConverter = messageConverter;
+        this.commentCreator = commentCreator;
         this.itemToItemCommand = itemToItemCommand;
+        this.commentRepository = commentRepository;
     }
     
     public List<Item> fetchAllItemsInMagazine()
@@ -37,8 +41,10 @@ public class ItemFacade
     
     public ItemCommand retrieveSpecificItem(Long id)
     {
-        return itemToItemCommand
-            .from(itemRepository.findOne(id));
+        return itemRepository
+            .findById(id)
+            .map(itemToItemCommand::from)
+            .orElseThrow(() -> new ItemNotFoundException("Item", "id", id));
     }
     
     public List<Item> retrieveAllItemsWithingCategory(String category)
@@ -47,15 +53,26 @@ public class ItemFacade
             .findItemsWithinCategory(category);
     }
     
-    public void reportMalfunction(Long id)
+    public ItemCommand reportMalfunction(Long id)
     {
-        Item item = itemRepository.findOne(id);
-        item.setStatus(Status.BROKEN);
+        return itemRepository
+            .findById(id)
+            .map(this::changeStatus)
+            .map(itemToItemCommand::from)
+            .orElseThrow(() -> new ItemNotFoundException("Item", "id", id));
     }
     
-    public void commentItem(Long id, CommentCommand message)
+    public Comment commentItem(Long id, CommentCommand commentCommand)
     {
-        Item item = itemRepository.findOne(id);
-        item.getComments().add(messageConverter.from(message));
+        return itemRepository
+            .findById(id)
+            .map(item -> commentRepository.save(commentCreator.from(commentCommand, item)))
+            .orElseThrow(() -> new ItemNotFoundException("Item", "id", id));
+    }
+    
+    private Item changeStatus(Item item)
+    {
+        item.setStatus(Status.BROKEN);
+        return item;
     }
 }

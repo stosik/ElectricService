@@ -1,7 +1,6 @@
 package com.stosik.electric.item.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +25,6 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "comments")
 @EqualsAndHashCode(exclude = "item")
 public class Comment
@@ -46,4 +44,10 @@ public class Comment
     @JoinColumn(name = "item_id")
     @JsonBackReference
     private Item item;
+    
+    public Comment(final Item item, final String message)
+    {
+        this.item = item;
+        this.message = message;
+    }
 }
